@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RPS-Multiplayer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+</head>
+
+<body>
+    <div class="container text-center customcontainer">
+
+        <div class="row spacer">
+            <div class="col-md-12 title">
+                <h1>Rock - Paper - Scissors</h1>
+            </div>
+        </div>
+
+        <div class="row spacer">
+            <div class="col-md-12 game-info">
+                <input type="text" name="name" placeholder="Name" class="align-middle" id="input-name">
+                <button type="button" class="btn btn-start">Start</button>
+            </div>
+        </div>
+
+        <div class="row spacer">
+
+            <div class="col-md-4">
+
+                <div class="play player1">
+                    <div class="row customrow">
+                        <div class="col-md-12 player-info player1-Name"><h3>Waiting For Player1</h3></div>
+                        <div class="col-md-12 player-info player1-r"></div>
+                        <div class="col-md-12 player-info player1-p"></div>
+                        <div class="col-md-12 player-info player1-s"></div>
+                        <div class="col-md-12 player-info player1-score"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="play result"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="play player2">
+                    <div class="row customrow">
+                        <div class="col-md-12 player-info player2-Name"><h3>Waiting For Player2</h3></div>
+                        <div class="col-md-12 player-info player2-r"></div>
+                        <div class="col-md-12 player-info player2-p"></div>
+                        <div class="col-md-12 player-info player2-s"></div>
+                        <div class="col-md-12 player-info player2-score"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row spacer">
+            <div class="col-md-12 chat-container">
+                <form>
+                    <textarea disabled name="chat-log" id="chat-log"></textarea>
+                    <br>
+                    <input type="text" name="chat-input" class="align-bottom" id="chat-input">
+                    <input type="submit" value="Send" class="btn btn-sm align-bottom btn-send btn-info">
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+
+</html>

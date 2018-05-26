@@ -1,0 +1,48 @@
+/*Add body pattern*/
+
+.title {
+    background-color: blue;
+}
+
+.test {
+    justify-content: center;
+}
+
+.btn-start, .btn-send {
+    width: 5.5em;
+}
+
+.spacer {
+    margin-bottom: 2%;
+}
+
+.chat-container form {
+    width: 100%;
+    height: 100%;
+}
+
+#chat-log {
+    width: 57%;
+    height: 20vh;
+    resize: none;
+}
+
+#chat-input {
+    width: 50%;
+}
+
+.play {
+    height: 30vh;
+    margin: 4%;
+    border: 2px solid black;
+    position: relative;
+}
+
+.player-info {
+    position: absolute;
+    left: 0px;
+}
+
+.player1-score, .player2-score {
+    bottom: 0px;
+}
