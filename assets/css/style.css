@@ -24,6 +24,7 @@
 #chat-log {
     width: 57%;
     height: 20vh;
+    overflow-y: scroll;
     resize: none;
 }
 
@@ -32,17 +33,46 @@
 }
 
 .play {
-    height: 30vh;
+    max-width: 320px;
+    min-height: 169px;
+    max-height: 172px;
+    height: 25vh;
     margin: 4%;
     border: 2px solid black;
     position: relative;
 }
 
 .player-info {
-    position: absolute;
+    position:absolute;
     left: 0px;
+}
+
+.player1-Name, .player2-Name {
+    top: 0px;
 }
 
 .player1-score, .player2-score {
     bottom: 0px;
+}
+
+.player1-r, .player2-r {
+    top: 2.2em;
+}
+
+.player1-p, .player2-p {
+    top: 4.2em;
+}
+
+.player1-s, .player2-s {
+    top: 6.2em;
+}
+
+.rps{
+    width: 100%
+}
+
+.rps:hover{
+    border: 1px solid yellow;
+    background-color: lightblue;
+    cursor:pointer;
 }
