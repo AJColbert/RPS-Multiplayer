@@ -29,7 +29,7 @@ $(".btn-start").on("click", function (event)
         loses: 0,
         wins: 0
     };
-
+    //THis function executes once for the initial Player add on the Start Button on Click
     database.ref("/Players").once("value", function (childSnapshot)
     {
         var JName;
@@ -39,7 +39,7 @@ $(".btn-start").on("click", function (event)
         var wins = Player.wins;
         var loses = Player.loses;
 
-        if (numchild == 0)
+        if (numchild == 0)//Check if any Players exists in the DB
         {
             PlayerNumber = 1;
 
@@ -174,6 +174,8 @@ database.ref("/Players").on("value", function (Snapshot)
     console.log(numchild);
     if (numchild == 0)
     {
+
+
         JName = $(".player2-Name");
         Jscore = $(".player2-score");
         JName.empty();
@@ -197,6 +199,14 @@ database.ref("/Players").on("value", function (Snapshot)
         CurrentKey = Object.keys(Snapshot.val())[0];
         if (CurrentKey == 1)
         {
+            $(".player1-r").empty();
+            $(".player1-p").empty();
+            $(".player1-s").empty();
+            $(".wait2").empty();
+            $(".yourturn").empty();
+            $(".yourturn").empty();
+            $(".result").empty();
+
             JName = $(".player2-Name");
             Jscore = $(".player2-score");
             JName.empty();
@@ -210,6 +220,13 @@ database.ref("/Players").on("value", function (Snapshot)
         }
         else if (CurrentKey == 2)
         {
+            $(".player2-r").empty();
+            $(".player2-p").empty();
+            $(".player2-s").empty();
+            $(".wait1").empty();
+            $(".yourturn").empty();
+            $(".result").empty();
+
             JName = $(".player1-Name");
             Jscore = $(".player1-score");
             JName.empty();
@@ -242,6 +259,7 @@ database.ref("/Players").on("value", function (Snapshot)
             setTimeout(function ()
             {
                 $(".wait2").remove();
+                $(".wait1").remove();
                 $(".player1-r").empty();
                 $(".player1-p").empty();
                 $(".player1-s").empty();
@@ -253,7 +271,7 @@ database.ref("/Players").on("value", function (Snapshot)
                 PlayGame(Snapshot);
             }, 5000)
 
-            
+
         } else
         {
             PlayGame(Snapshot);
@@ -269,12 +287,12 @@ var PlayGame = function (Snapshot)
 {
     var Player1Choice = Snapshot.child("1").child("choice").val()
     var Player2Choice = Snapshot.child("2").child("choice").val()
-    console.log(Player1Choice);
+    console.log("p1 chance - " + Player1Choice);
     console.log(Player2Choice);
-    
 
     if (Player1Choice == "")
     {
+      
         if (PlayerNumber == 1)
         {
             if ($(".yourturn").length)
@@ -291,14 +309,12 @@ var PlayGame = function (Snapshot)
         }
         else
         {
-            if ($(".wait1").length)
-            {
-                $(".wait1").remove();
-            }
+            console.log("IN th else not printing")
 
             var h3turn = $("<h3>");
             h3turn.attr("class", "wait1");
             h3turn.html("Waiting For Player 1");
+            console.log(h3turn)
             $(".game-info").append(h3turn);
         }
     }
@@ -321,7 +337,7 @@ var PlayGame = function (Snapshot)
             addRPS(2);
         }
         else
-        {  
+        {
             var h3turn = $("<h3>");
             h3turn.attr("class", "wait2");
             h3turn.html("Waiting For Player 2");
@@ -331,9 +347,9 @@ var PlayGame = function (Snapshot)
     }
     else if (Player1Choice != "" && Player2Choice != "")
     {
-       
+
         $(".wait2").remove();
-    
+
         Player1Obj = Snapshot.child("1").val();
         Player2Obj = Snapshot.child("2").val()
 
@@ -420,6 +436,8 @@ var Player1Win = function (Player1Obj, Player2Obj)
     h1Result.text(Player1Obj.name + " Wins");
     $(".result").append(h1Result);
 
+    PopulateOpponent(Player1Obj.choice, Player2Obj.choice);
+
     database.ref("/Players").child("1").update({
         choice: "",
         wins: win
@@ -442,6 +460,8 @@ var Player2Win = function (Player1Obj, Player2Obj)
     h1Result.text(Player2Obj.name + " Wins");
     $(".result").append(h1Result);
 
+    PopulateOpponent(Player1Obj.choice, Player2Obj.choice);
+
     database.ref("/Players").child("1").update({
         choice: "",
         wins: win
@@ -460,6 +480,8 @@ var TieGame = function (Player1Obj, Player2Obj)
     var h1Result = $("<h1>");
     h1Result.text("Tie Game");
     $(".result").append(h1Result);
+
+    PopulateOpponent(Player1Obj.choice, Player2Obj.choice);
 
     database.ref("/Players").child("1").update({
         choice: ""
@@ -534,7 +556,34 @@ var addRPS = function (PlayerRef)
         Js.append(h3s);
     }
 }
+var PopulateOpponent = function (choice1, choice2)
+{
+    if (PlayerNumber != 1)
+    {
+        $(".player1-r").empty();
+        $(".player1-p").empty();
+        $(".player1-s").empty();
 
+        $(".yourturn").remove();
+
+        var h1Choice = $("<h1>");
+        h1Choice.text(choice1);
+        $(".player1-r").append(h1Choice);
+    }
+    else if (PlayerNumber != 2)
+    {
+        $(".player2-r").empty();
+        $(".player2-p").empty();
+        $(".player2-s").empty();
+
+        $(".yourturn").remove();
+
+        var h1Choice = $("<h1>");
+        h1Choice.text(choice2);
+        $(".player2-r").append(h1Choice);
+
+    }
+}
 
 // -------------------------------------------------------------- (CRITICAL - BLOCK) --------------------------- //
 // connectionsRef references a specific location in our database.
